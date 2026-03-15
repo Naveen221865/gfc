@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GfG Campus Club – Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+
+{% include 'navbar.html' %}
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-badge"><i class="fas fa-code"></i> GeeksforGeeks Campus Club</div>
+            <h1>Welcome to the<br><span class="highlight">GfG Campus Club</span><br>Portal</h1>
+            <p>A community for students to learn programming, participate in coding contests, and grow together.</p>
+            <div class="hero-btns">
+                <a href="/signup" class="btn-primary"><i class="fas fa-user-plus"></i> Join the Club</a>
+                <a href="#events" class="btn-outline"><i class="fas fa-calendar"></i> Explore Events</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="code-card">
+                <div class="code-top">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                    <span>solution.py</span>
+                </div>
+                <pre class="code-body"><span class="kw">def</span> <span class="fn">two_sum</span>(nums, target):
+    seen = {}
+    <span class="kw">for</span> i, n <span class="kw">in</span> <span class="fn">enumerate</span>(nums):
+        diff = target - n
+        <span class="kw">if</span> diff <span class="kw">in</span> seen:
+            <span class="kw">return</span> [seen[diff], i]
+        seen[n] = i
+
+<span class="cm"># Output: [0, 1] ✓</span></pre>
+            </div>
+            <div class="floating-badge b1"><i class="fas fa-trophy"></i> #1 Ranked</div>
+            <div class="floating-badge b2"><i class="fas fa-fire"></i> 30 Day Streak</div>
+            <div class="floating-badge b3"><i class="fas fa-check-circle"></i> Problem Solved!</div>
+        </div>
+    </div>
+    <div class="hero-scroll"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<!-- ── STATS ── -->
+<section class="stats-section" id="stats">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card" data-target="500">
+                <div class="stat-icon">👨💻</div>
+                <div class="stat-num"><span class="counter">0</span>+</div>
+                <div class="stat-label">Students Registered</div>
+            </div>
+            <div class="stat-card" data-target="30">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-num"><span class="counter">0</span>+</div>
+                <div class="stat-label">Events Conducted</div>
+            </div>
+            <div class="stat-card" data-target="1000">
+                <div class="stat-icon">📚</div>
+                <div class="stat-num"><span class="counter">0</span>+</div>
+                <div class="stat-label">Problems Solved</div>
+            </div>
+            <div class="stat-card" data-target="20">
+                <div class="stat-icon">💼</div>
+                <div class="stat-num"><span class="counter">0</span>+</div>
+                <div class="stat-label">Students Placed</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">About Us</span>
+            <h2>Who We Are</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-text reveal">
+                <p>The <strong>GeeksforGeeks Campus Club</strong> is a student-driven coding community dedicated to improving programming skills, preparing students for technical interviews, and fostering collaboration through coding contests, workshops, and hackathons.</p>
+                <p>We believe every student has the potential to become a great programmer. Our club provides the platform, resources, and community to make that happen.</p>
+                <div class="about-tags">
+                    <span><i class="fas fa-code"></i> DSA</span>
+                    <span><i class="fas fa-laptop-code"></i> Web Dev</span>
+                    <span><i class="fas fa-brain"></i> CP</span>
+                    <span><i class="fas fa-briefcase"></i> Placements</span>
+                </div>
+            </div>
+            <div class="about-visual reveal">
+                <div class="about-card-grid">
+                    <div class="mini-card"><i class="fas fa-users"></i><span>Community</span></div>
+                    <div class="mini-card"><i class="fas fa-code-branch"></i><span>Open Source</span></div>
+                    <div class="mini-card"><i class="fas fa-medal"></i><span>Contests</span></div>
+                    <div class="mini-card"><i class="fas fa-chalkboard-teacher"></i><span>Workshops</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── EVENTS ── -->
+<section class="events-section" id="events">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Upcoming</span>
+            <h2>Events & Workshops</h2>
+        </div>
+        <div class="events-grid">
+            {% for event in events %}
+            <div class="event-card reveal">
+                <div class="event-top">
+                    <div class="event-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <span class="event-date"><i class="fas fa-clock"></i> {{ event[2] }}</span>
+                </div>
+                <h3>{{ event[1] }}</h3>
+                <p class="event-location"><i class="fas fa-map-marker-alt"></i> {{ event[3] }}</p>
+                <p class="event-desc">{{ event[4] }}</p>
+                <button class="btn-register">Register Now <i class="fas fa-arrow-right"></i></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ── PROBLEM OF THE DAY ── -->
+<section class="potd-section" id="potd">
+    <div class="container">
+        <div class="potd-card reveal">
+            <div class="potd-left">
+                <div class="potd-tag"><i class="fas fa-fire"></i> Problem of the Day</div>
+                {% if problem %}
+                <h2>{{ problem[1] }}</h2>
+                <div class="potd-meta">
+                    <span class="difficulty {{ problem[2]|lower }}">{{ problem[2] }}</span>
+                    <span><i class="fas fa-star"></i> Daily Challenge</span>
+                </div>
+                <p>Solve this problem to sharpen your problem-solving skills and climb the leaderboard!</p>
+                <a href="{{ problem[3] }}" target="_blank" class="btn-primary">
+                    <i class="fas fa-external-link-alt"></i> Solve Now on GfG
+                </a>
+                {% endif %}
+            </div>
+            <div class="potd-right">
+                <div class="potd-visual">
+                    <div class="potd-ring"></div>
+                    <div class="potd-ring r2"></div>
+                    <span>🧠</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── LEADERBOARD ── -->
+<section class="leaderboard-section" id="leaderboard">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Rankings</span>
+            <h2>Top Coders</h2>
+        </div>
+        <div class="leaderboard-wrap reveal">
+            <table class="lb-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Coder</th>
+                        <th>Problems Solved</th>
+                        <th>Badge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in leaderboard %}
+                    <tr class="lb-row {% if loop.index == 1 %}gold{% elif loop.index == 2 %}silver{% elif loop.index == 3 %}bronze{% endif %}">
+                        <td class="rank-cell">
+                            {% if loop.index == 1 %}🥇
+                            {% elif loop.index == 2 %}🥈
+                            {% elif loop.index == 3 %}🥉
+                            {% else %}#{{ loop.index }}{% endif %}
+                        </td>
+                        <td class="name-cell">
+                            <div class="avatar">{{ row[1][0] }}</div>
+                            {{ row[1] }}
+                        </td>
+                        <td class="score-cell">
+                            <div class="score-bar-wrap">
+                                <div class="score-bar" style="width:{{ (row[2] / 500 * 100)|int }}%"></div>
+                                <span>{{ row[2] }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            {% if loop.index == 1 %}<span class="badge gold-badge">Champion</span>
+                            {% elif loop.index <= 3 %}<span class="badge top-badge">Top Coder</span>
+                            {% else %}<span class="badge rising-badge">Rising Star</span>{% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div style="text-align:center;margin-top:1.5rem;">
+                <a href="#leaderboard" class="btn-outline">View Full Leaderboard <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── RESOURCES ── -->
+<section class="resources-section" id="resources">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Learn</span>
+            <h2>Learning Resources</h2>
+        </div>
+        <div class="resources-grid">
+            <a href="https://www.geeksforgeeks.org/data-structures/" target="_blank" class="resource-card reveal">
+                <div class="resource-icon" style="background:#e8f5e9;color:#2F8D46"><i class="fas fa-sitemap"></i></div>
+                <h3>Data Structures & Algorithms</h3>
+                <p>Master arrays, trees, graphs, sorting and more with GfG tutorials.</p>
+                <span class="resource-link">Explore <i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://www.geeksforgeeks.org/company-interview-corner/" target="_blank" class="resource-card reveal">
+                <div class="resource-icon" style="background:#e3f2fd;color:#1565c0"><i class="fas fa-briefcase"></i></div>
+                <h3>Interview Preparation</h3>
+                <p>Company-wise questions, system design, and HR interview tips.</p>
+                <span class="resource-link">Explore <i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://practice.geeksforgeeks.org/" target="_blank" class="resource-card reveal">
+                <div class="resource-icon" style="background:#fff3e0;color:#e65100"><i class="fas fa-laptop-code"></i></div>
+                <h3>Coding Practice</h3>
+                <p>Solve 1000+ problems across difficulty levels on GfG Practice.</p>
+                <span class="resource-link">Explore <i class="fas fa-arrow-right"></i></span>
+            </a>
+            <a href="https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/" target="_blank" class="resource-card reveal">
+                <div class="resource-icon" style="background:#fce4ec;color:#c62828"><i class="fas fa-trophy"></i></div>
+                <h3>Competitive Programming</h3>
+                <p>Complete guide to CP — from basics to advanced contest strategies.</p>
+                <span class="resource-link">Explore <i class="fas fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── ACHIEVEMENTS ── -->
+<section class="achievements-section" id="achievements">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Pride</span>
+            <h2>Our Achievements</h2>
+        </div>
+        <div class="achievements-grid">
+            {% for a in achievements %}
+            <div class="achievement-card reveal">
+                <div class="achievement-icon">{{ a[1] }}</div>
+                <h3>{{ a[2] }}</h3>
+                <p>{{ a[3] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ── JOIN CTA ── -->
+<section class="join-section">
+    <div class="container">
+        <div class="join-card reveal">
+            <div class="join-text">
+                <h2>Ready to Start Your Coding Journey?</h2>
+                <p>Join the GeeksforGeeks Campus Club and start improving your coding skills today.</p>
+            </div>
+            <a href="/signup" class="btn-primary btn-large">
+                <i class="fas fa-rocket"></i> Join Now
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer" id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="nav-logo">GfG</div>
+                <p>GeeksforGeeks Campus Club — empowering the next generation of coders.</p>
+                <div class="social-links">
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/#resources">Resources</a>
+                <a href="/#leaderboard">Leaderboard</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> gfgclub@college.edu</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-map-marker-alt"></i> Campus, Block A</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 GeeksforGeeks Campus Club. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+</body>
+</html>

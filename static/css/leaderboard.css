@@ -1,0 +1,910 @@
+/* ── LEADERBOARD PAGE STYLES ── */
+
+:root {
+    --primary: #2F8D46;
+    --primary-light: #e8f5e9;
+    --primary-dark: #1b5e20;
+    --text-dark: #1a1a1a;
+    --text-light: #666;
+    --bg-light: #f5f5f5;
+    --bg-white: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --gold: #FFD700;
+    --silver: #C0C0C0;
+    --bronze: #CD7F32;
+}
+
+[data-theme="dark"] {
+    --text-dark: #f5f5f5;
+    --text-light: #b0b0b0;
+    --bg-light: #1a1a1a;
+    --bg-white: #2a2a2a;
+    --border-color: #404040;
+}
+
+/* ── HERO SECTION ── */
+.leaderboard-hero {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    overflow: hidden;
+    margin-top: 60px;
+}
+
+.leaderboard-hero canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+
+.leaderboard-hero .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: slideUp 0.8s ease-out;
+}
+
+.leaderboard-hero .hero-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.leaderboard-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.leaderboard-hero .highlight {
+    color: #ffd700;
+}
+
+.leaderboard-hero p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ── PODIUM SECTION ── */
+.podium-section {
+    padding: 4rem 0;
+    background: var(--bg-white);
+}
+
+.podium-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 2rem;
+    align-items: flex-end;
+    margin-top: 2rem;
+}
+
+.podium-card {
+    background: var(--bg-light);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid var(--border-color);
+}
+
+.podium-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.podium-card.rank-1 {
+    grid-column: 2;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+    border-color: var(--gold);
+    transform: scale(1.05);
+}
+
+.podium-card.rank-2 {
+    grid-column: 1;
+}
+
+.podium-card.rank-3 {
+    grid-column: 3;
+}
+
+.podium-rank {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.podium-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--primary);
+}
+
+.podium-avatar.gold {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.podium-card h3 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.podium-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.podium-stats .stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.podium-stats .label {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.podium-stats .value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.podium-badges {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+}
+
+.gold-badge {
+    background: var(--gold);
+    color: #333;
+}
+
+.silver-badge {
+    background: var(--silver);
+    color: #333;
+}
+
+.bronze-badge {
+    background: var(--bronze);
+    color: white;
+}
+
+.badge-icon {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* ── FILTER SECTION ── */
+.filter-section {
+    padding: 2rem 0;
+    background: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-white);
+    color: var(--text-dark);
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.filter-select {
+    padding: 10px 12px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-white);
+    color: var(--text-dark);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-box i {
+    position: absolute;
+    left: 12px;
+    color: var(--text-light);
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 12px 10px 40px;
+    border: 2px solid var(--border-color);
+    background: var(--bg-white);
+    color: var(--text-dark);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* ── POINTS INFO SECTION ── */
+.points-info-section {
+    padding: 3rem 0;
+    background: var(--bg-white);
+}
+
+.points-card {
+    background: linear-gradient(135deg, var(--primary-light) 0%, rgba(47, 141, 70, 0.05) 100%);
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+    padding: 2rem;
+}
+
+.points-card h3 {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.point-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--bg-white);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.point-icon {
+    font-size: 2rem;
+}
+
+.point-label {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    text-align: center;
+}
+
+.point-value {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* ── LEADERBOARD TABLE SECTION ── */
+.leaderboard-table-section {
+    padding: 4rem 0;
+    background: var(--bg-light);
+}
+
+.table-wrapper {
+    background: var(--bg-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leaderboard-table thead {
+    background: var(--primary);
+    color: white;
+}
+
+.leaderboard-table th {
+    padding: 1.2rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.leaderboard-table td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-dark);
+}
+
+.leaderboard-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.leaderboard-table tbody tr:hover {
+    background: var(--primary-light);
+    cursor: pointer;
+}
+
+.leaderboard-table tbody tr.top-3 {
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.rank-cell {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.student-cell {
+    display: flex;
+    align-items: center;
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: 2px solid var(--primary);
+}
+
+.avatar.gold {
+    background: rgba(255, 215, 0, 0.2);
+    color: var(--gold);
+    border-color: var(--gold);
+}
+
+.name-dept {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.dept {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.problems-cell {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.streak-cell {
+    font-weight: 500;
+}
+
+.points-cell {
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.movement-cell {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.up {
+    color: #4CAF50;
+}
+
+.down {
+    color: #f44336;
+}
+
+.stable {
+    color: var(--text-light);
+}
+
+.badges-cell {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+/* ── HALL OF FAME SECTION ── */
+.hall-of-fame-section {
+    padding: 4rem 0;
+    background: var(--bg-white);
+}
+
+.hall-of-fame-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.fame-card {
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.fame-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+}
+
+.fame-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.fame-card h3 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.fame-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.fame-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.fame-stat {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+/* ── ACTIVITY FEED SECTION ── */
+.activity-feed-section {
+    padding: 4rem 0;
+    background: var(--bg-light);
+}
+
+.activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.activity-item {
+    background: var(--bg-white);
+    border-left: 4px solid var(--primary);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    transform: translateX(5px);
+    box-shadow: var(--shadow);
+}
+
+.activity-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.activity-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.activity-user {
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.activity-action {
+    color: var(--text-light);
+}
+
+.activity-problem {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-style: italic;
+}
+
+.activity-time {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-left: auto;
+}
+
+/* ── MODAL ── */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--bg-white);
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--bg-light);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--primary);
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.profile-dept {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.profile-stat {
+    text-align: center;
+}
+
+.profile-stat-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+.profile-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .podium-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .podium-card {
+        grid-column: auto !important;
+    }
+
+    .podium-card.rank-1 {
+        transform: scale(1);
+    }
+
+    .leaderboard-table {
+        font-size: 0.9rem;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .leaderboard-hero h1 {
+        font-size: 2rem;
+    }
+
+    .leaderboard-hero p {
+        font-size: 0.95rem;
+    }
+
+    .filter-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-buttons {
+        flex-direction: column;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+
+    .points-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hall-of-fame-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .leaderboard-table {
+        font-size: 0.85rem;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 0.6rem;
+    }
+
+    .name {
+        font-size: 0.9rem;
+    }
+
+    .dept {
+        font-size: 0.75rem;
+    }
+
+    .activity-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .activity-time {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .leaderboard-hero {
+        height: 300px;
+        margin-top: 50px;
+    }
+
+    .leaderboard-hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .podium-card {
+        padding: 1.5rem;
+    }
+
+    .podium-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .podium-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .points-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .leaderboard-table {
+        font-size: 0.8rem;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 0.5rem;
+    }
+
+    .avatar {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+}
